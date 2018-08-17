@@ -24,6 +24,5 @@ Get-ChildItem -Path $docxPATH -File *.docx | ForEach-Object {
     $NewName = $_.FullName -replace 'docx','pdf'
     ($Word.Documents.Open($_.FullName)).SaveAs([ref]$NewName,[ref]17) 
     $Word.Application.ActiveDocument.Close()
+    Move-item $NewName -Destination $pdfPATH -Force
 } 
-
-Get-ChildItem -Path $docxPATH -File *.pdf | Move-item -Destination $pdfPATH -Force
